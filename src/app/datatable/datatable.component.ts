@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from "../services/server.service"
 
 @Component({
   selector: 'app-datatable',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatatableComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serverService: ServerService) { }
 
-  ngOnInit(): void {
+  products: any
+
+  ngOnInit() {
+    this.serverService.getProducts().subscribe(response => {
+      this.products = response
+    })
   }
-
 }
